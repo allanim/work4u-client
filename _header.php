@@ -1,4 +1,4 @@
-<header>
+<header class="site-header">
     <div class="header-wrapper">
         <div class="navbar pt-0 pb-0">
             <div class="container-boxed max">
