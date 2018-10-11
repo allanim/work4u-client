@@ -1,0 +1,30 @@
+<html>
+<head>
+  <title> Login page </title>
+   </head>
+ <body>
+        <left> <h1 style="color:black;">Work4U </h1> </left>
+        <right> <input type="sign up" onclick="check(this. form)" value="sign up"/> </right>
+        <right> <input type="sign in" onclick="check(this. form)" value="sign in"/> </right>
+        <form name="Login">
+          <center> <h2 style="color:black;">LOGIN </h2> </center>
+          <center>  Email<input type="text" name="userid"/> </center>
+          <center>  Password<input type="password" name="pswrd"/> </center>
+          <center> <label><input id="rememberme" name="rememberme" value="remember" type="checkbox" /> &nbsp;Remember me</label> </center>
+            <center> <input type="button" onclick="check(this.form)" value="Login"/> </center>
+            <center> <input type="reset" value="Cancel"/> </center>
+
+
+        <script language="javascript">
+            function check(form) { /*to check userid & password*/
+
+                if(form.userid.value == "user@example.com" && form.pswrd.value == "password")/*it checkes whether the userid and password are matching*/ {
+                    window.open('home.html')/*opens the  page when everything is correct*/
+                }
+                else {
+                    alert("Wrong Password or Username")/*displays error message*/
+                }
+             }
+        </script>
+    </body>
+</html>
