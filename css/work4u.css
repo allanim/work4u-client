@@ -332,3 +332,14 @@ header h1, h2, h3 {
     color: #fff;
     margin: 1em 5px 0 0;
 }
+
+.form-body {
+    background-color: rgba(0, 0, 0, .03);
+    padding: 50px;
+    font-size: 14px;
+}
+
+.bottom-line {
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    margin-bottom: 2em;
+}
