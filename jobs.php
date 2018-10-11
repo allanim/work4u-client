@@ -6,24 +6,23 @@
 <!-- Start PAGE -->
 <div class="site">
     <?php include("_header.php"); ?>
-    <div class="container-wrap">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="main-content">
-                    <?php include("_search-box.php") ?>
-                </div>
-            </div>
-        </div>
 
+    <div class="page-heading">
+        <div class="search-content shadow">
+            <?php include("_search-box.php") ?>
+        </div>
+    </div>
+
+    <div class="container-wrap">
         <div class="container-boxed max">
             <div class="row pt-0 pb-10">
                 <div class="col-md-12 col-sm-12 pl-5 pr-5">
                     <div class="jobs posts-loop jobs-shortcode">
                         <div class="job-title">
-                            <h3>Recommended Jobs</h3>
+                            <h3>Latest Jobs</h3>
                         </div>
                         <div>
-                            <?php for ($i = 0; $i < 3; $i++) {
+                            <?php for ($i = 0; $i < 10; $i++) {
                                 include("_job_row.php");
                             } ?>
                         </div>

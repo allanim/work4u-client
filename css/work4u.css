@@ -106,6 +106,7 @@ header h1, h2, h3 {
     z-index: 1071;
     background-color: #EBF0DF;
 }
+
 .site-header nav {
     color: #FFFFFF;
     background-color: #1c262b;
@@ -127,9 +128,18 @@ header h1, h2, h3 {
     background-image: url("../images/main-search.png");
     height: 500px;
     z-index: 99;
+    padding-top: 30px;
 }
 
-.main-search {
+.search-content {
+    background-color: #7DB376;
+    height: 100px;
+    z-index: 99;
+    padding-top: 15px;
+    /*box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -5px 0 rgba(0,0,0,.1);*/
+}
+
+.search-box {
     left: 50%;
     position: absolute;
     -webkit-transform: translate(-50%, 0);
@@ -137,8 +147,6 @@ header h1, h2, h3 {
     -o-transform: translate(-50%, 0);
     transform: translate(-50%, 0);
     z-index: 1;
-    top: 30px;
-    bottom: 2em;
 }
 
 .search-form {
@@ -205,15 +213,11 @@ header h1, h2, h3 {
 }
 
 .job-row .loop-item-wrap .loop-item-content .content-meta>span {
-    padding-right: 1.0714285714285714em;
+    padding-right: 1em;
 }
 
 .job-row .loop-item-wrap .show-view-more {
     float: right;
-}
-
-.site-info {
-    /*position: relative;*/
 }
 
 .site-info .footer-more {
