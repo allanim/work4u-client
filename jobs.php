@@ -15,8 +15,9 @@
 
     <div class="container-wrap">
         <div class="container-boxed max">
-            <div class="row pt-0 pb-10">
-                <div class="col-md-12 col-sm-12 pl-5 pr-5">
+            <div class="row pt-0 pb-10 pl-5 pr-5">
+
+                <div class="col-md-12 col-sm-12">
                     <div class="jobs posts-loop jobs-shortcode">
                         <div class="job-title">
                             <h3>Latest Jobs</h3>
@@ -27,8 +28,13 @@
                             } ?>
                         </div>
 
+                        <div class="pagination">
+                            <a href="./jobs.php" class="btn btn-default btn-block btn-loadmore">Load More</a>
+                        </div>
+
                     </div>
                 </div>
+
             </div>
         </div>
     </div>

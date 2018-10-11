@@ -8,7 +8,7 @@ $isMain = basename($_SERVER['PHP_SELF']) == "index.php";
             <h3 class="mb-3">Your next job is here</h3>
         </div>
     <?php } ?>
-    <form>
+    <form action="jobs.php">
         <div class="form-row search-form">
             <div class="col-md-5">
                 <label class="sr-only" for="search-keyword">Keyword</label>

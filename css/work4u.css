@@ -17,7 +17,6 @@ h1, h2, h3 {
 
 header h1, h2, h3 {
     margin-top: 20px;
-    font-size: 2em;
     font-weight: 700;
     color: #334455;
 }
@@ -102,7 +101,7 @@ header h1, h2, h3 {
 .site-header {
     position: sticky;
     top: 0;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .05), inset 0 -1px 0 rgba(0, 0, 0, .1);
     z-index: 1071;
     background-color: #EBF0DF;
 }
@@ -136,7 +135,13 @@ header h1, h2, h3 {
     height: 100px;
     z-index: 99;
     padding-top: 15px;
-    /*box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -5px 0 rgba(0,0,0,.1);*/
+}
+
+.heading-content {
+    background-color: #7DB376;
+    height: 100px;
+    z-index: 99;
+    padding-top: 15px;
 }
 
 .search-box {
@@ -212,7 +217,7 @@ header h1, h2, h3 {
     color: #44494b;
 }
 
-.job-row .loop-item-wrap .loop-item-content .content-meta>span {
+.job-row .loop-item-wrap .loop-item-content .content-meta > span {
     padding-right: 1em;
 }
 
@@ -228,4 +233,102 @@ header h1, h2, h3 {
 
 .site-info .footer-more .noo-bottom-bar-content {
     text-align: center;
+}
+
+.btn-loadmore {
+    font-weight: 700;
+    color: #EBF0DF;
+    background-color: #44494b;
+    border-color: #EBEEEF;
+}
+
+.page-heading .page-title {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0;
+    color: #fff;
+}
+
+.page-heading .page-sub-heading-info {
+    color: #fff;
+    opacity: .7;
+    filter: alpha(opacity=70);
+    margin-top: .8em;
+}
+
+.job-card {
+    background-color: rgba(0, 0, 0, .03);
+}
+
+.job-desc {
+    font-family: 'Roboto', arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5em;
+    color: rgba(0, 0, 0, 0.87);
+    text-align: initial;
+    white-space: pre-line;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+}
+
+.company-desc {
+    padding: 2em;
+    background-color: rgba(0, 0, 0, .03);
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+}
+
+.company-header {
+    width: 100%;
+    display: table-cell;
+}
+
+.company-header .company-featured {
+    width: 50%;
+    float: left;
+    overflow: hidden;
+    padding-right: 20px;
+    padding-bottom: 2em;
+}
+
+.company-header .company-featured img {
+    width: 110px;
+    height: auto;
+    overflow: hidden;
+    float: left;
+    border-radius: 50%;
+}
+
+.company-header .company-title {
+    font-size: 18px;
+    width: 50%;
+    float: left;
+}
+
+.company-desc .company-info {
+    font-size: 14px;
+}
+
+.company-desc .job-social {
+    padding: 2em 0;
+}
+
+.job-social a.company_website {
+    width: 100%;
+    display: block;
+    margin: 1em 0 0;
+    color: #7DB376;
+    padding: 0;
+}
+
+.job-social a.icon {
+    background-color: #1c262b;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    color: #fff;
+    margin: 1em 5px 0 0;
 }
