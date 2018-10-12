@@ -343,3 +343,63 @@ header h1, h2, h3 {
     border-bottom: 1px solid rgba(0, 0, 0, .125);
     margin-bottom: 2em;
 }
+
+.member-manage-table {
+    overflow: auto;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1.6em;
+}
+
+.table, label {
+    max-width: 100%;
+}
+
+.table thead {
+    background-color: #2e2e2e;
+    color: #EBF0DF;
+}
+
+.table tbody tr:nth-child(2n+1) {
+    background: rgba(255, 255, 255, .35);
+}
+
+.member-manage-table .table thead th {
+    padding-left: 1em;
+    padding-right: 1em;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.job-application-status {
+    background: #ee5b4c;
+}
+
+.table a:hover {
+    text-decoration: none;
+    color: #EBF0DF;
+}
+
+.job-application-status {
+    color: #fff;
+    display: block;
+    font-size: 11px;
+    padding: 4px;
+    text-align: center;
+    border-radius: 20px;
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.member-manage-table .member-manage-action {
+    font-size: 1em;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+.member-manage-table .member-manage-action .fa-trash-alt {
+    color: #d9534f;
+}

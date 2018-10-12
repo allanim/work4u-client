@@ -12,9 +12,9 @@
             </h2>
             <p class="content-meta">
                 <span class="job-company"><a href="#">RBC Amplify</a></span>
-                <span class="job-type"><a href="#"><i class="far fa-bookmark"></i>Student Job </a></span>
-                <span class="job-location"><i class="fas fa-map-marker-alt"></i><a href="#"><em>Toronto, Ontario</em></a></span>
-                <span><time class="entry-date" datetime="2018-08-18T01:40:23+00:00"><i class="1 month ago"></i>1 month ago</time></span>
+                <span class="job-type"><a href="#"><i class="far fa-bookmark"></i>&nbsp;Student Job </a></span>
+                <span class="job-location"><i class="fas fa-map-marker-alt"></i>&nbsp;<a href="#"><em>Toronto, Ontario</em></a></span>
+                <span><time class="entry-date" datetime="2018-08-18T01:40:23+00:00"><i class="far fa-clock"></i>&nbsp;1 month ago</time></span>
             </p>
         </div>
         <div class="show-view-more">
