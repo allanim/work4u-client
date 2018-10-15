@@ -25,7 +25,6 @@
                 <div class="col-md-12 col-sm-12">
                     <div class="jobs posts-loop jobs-shortcode">
                         <div class="job-title">
-                            <h3>Latest Jobs</h3>
                         </div>
                         <div>
                             <?php for ($i = 0; $i < 5; $i++) {
