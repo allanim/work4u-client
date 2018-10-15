@@ -15,15 +15,18 @@
                 <form id="login" class="needs-validation" method="post">
                     <input type="email" name="email" id="email" class="form-control mb-3" placeholder="E-Mail"
                            required>
+                    <input type="text" name="name" id="name" class="form-control mb-3" placeholder="Name"
+                           required>
                     <input type="password" name="password" id="password" class="form-control mb-3"
                            placeholder="Password" required>
-                    <div class="form-control-flat">
-                        <label class="checkbox">
-                            <input type="checkbox" class="rememberme" name="rememberme" value="forever">
-                            <i></i> Remember Me
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
+                    <input type="password" name="re-password" id="re-password" class="form-control mb-3"
+                           placeholder="Repeat Password" required>
+                    <select class="custom-select form-control mb-3" name="type" id="type" required>
+                        <option value="">-Select-</option>
+                        <option value="candidate">I&#039;m a candidate looking for a job</option>
+                        <option value="employer">I&#039;m an employer looking to hire</option>
+                    </select>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block">Sign up</button>
                 </form>
             </div>
         </div>
