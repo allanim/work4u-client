@@ -13,7 +13,7 @@ $isMain = basename($_SERVER['PHP_SELF']) == "index.php";
             <div class="col-md-5">
                 <label class="sr-only" for="search-keyword">Keyword</label>
                 <input type="text" class="form-control" name="keyword" id="search-keyword" placeholder="Keyword"
-                       value="" required>
+                       value="">
             </div>
             <div class="col-md-5">
                 <label class="sr-only" for="search-location">Location</label>
