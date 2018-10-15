@@ -7,8 +7,8 @@
 <div class="site">
     <?php include("_header.php"); ?>
 
-    <div class="page-heading">
-        <div class="container-fluid max heading-content shadow pl-10 pr-10">
+    <div class="container-wrap heading-content shadow">
+        <div class="container-boxed max page-heading pl-10 pr-10">
             <div class="page-heading-info">
                 <h1 class="page-title">Manage Application</h1>
             </div>
