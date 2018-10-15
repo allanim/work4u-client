@@ -1276,6 +1276,10 @@ a, .navbar-nav li > a, .navbar-nav ul.sub-menu li > a {
     color: #2e2e2e;
 }
 
+a:hover {
+    color: #7DB376;
+}
+
 .btn-link, .btn.btn-white:hover {
     color: #2e2e2e;
 }

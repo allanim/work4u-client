@@ -10,10 +10,10 @@
     <div class="page-heading">
         <div class="container-fluid max heading-content shadow pl-10 pr-10">
             <div class="page-heading-info">
-                <h1 class="page-title">Manage Jobs</h1>
+                <h1 class="page-title">Manage Application</h1>
             </div>
             <div class="page-sub-heading-info">
-                <p>You've posted 5 jobs</p>
+                <p>You've received 5 applications</p>
             </div>
         </div>
     </div>
@@ -23,41 +23,54 @@
             <div class="row pt-0 pb-10 pl-5 pr-5">
                 <div class="col-md-12 col-sm-12">
 
-                    <div class="mt-5 text-right clearfix">
-                        <a class="btn btn-primary" href="post-job.php">Post a job</a>
+                    <div class="input-group mb-3 mt-5">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="job">Filter</label>
+                        </div>
+                        <select class="custom-select" id="job" style="max-width: 200px;">
+                            <option value="">-All jobs-</option>
+                            <option value="">Senior Designer</option>
+                            <option value="">Developer</option>
+                            <option value="">QA Tester</option>
+                            <option value="">Marketing Online</option>
+                        </select>
                     </div>
 
                     <div class="member-manage-table mt-1">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Title</th>
-                                <th class="hidden-xs hidden-sm">Location</th>
-                                <th class="hidden-xs">Closing</th>
-                                <th class="text-center">Apps</th>
-                                <th class="text-center hidden-xs">Action</th>
+                                <th>Candidate</th>
+                                <th>Applied Job</th>
+                                <th>Applied Date</th>
+                                <th class="text-center">Resume</th>
+                                <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <?php for ($i = 0; $i < 10; $i++) { ?>
                                 <tr>
                                     <td>
-                                        <a href="./job-detail.php"><strong>Senior Designer</strong></a>
+                                        <a href="./job-detail.php"><strong>Allan Im</strong></a>
                                     </td>
-                                    <td class="hidden-xs hidden-sm">
-                                        <i class="fas fa-map-marker-alt"></i>&nbsp;<em>Toronto, ON</em>
+                                    <td>
+                                        <a href="./job-detail.php"><strong>Developer</strong></a>
                                     </td>
-                                    <td class="job-manage-expires hidden-xs">
-                                        <span><i class="far fa-clock"></i>&nbsp;<em>Nov 19, 2018</em></span>
+                                    <td>
+                                        <i class="fas fa-map-marker-alt"></i>&nbsp;<em>Nov 11, 2018</em>
                                     </td>
                                     <td class="text-center">
-                                        <a href="manage-jobs.php" class="job-application-status job-application-status-publish">132</a>
+                                        <a class="view_applications" href="#" data-toggle="tooltip" title="CV">
+                                            <i class="fas fa-file-download"> allan-resume.pdf</i>
+                                        </a>
                                     </td>
-                                    <td class="member-manage-actions hidden-xs text-center">
-                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip" title="Edit Job">
+                                    <td class="text-center">
+                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip"
+                                           title="Edit Job">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="./manage-jobs.php" class="member-manage-action action-delete" data-toggle="tooltip"
+                                        <a href="./manage-jobs.php" class="member-manage-action action-delete"
+                                           data-toggle="tooltip"
                                            title="Delete Job">
                                             <i class="fas fa-trash-alt"></i>
                                         </a>
