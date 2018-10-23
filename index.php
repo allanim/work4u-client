@@ -1,3 +1,7 @@
+<?php
+include("_session.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include("_head.php"); ?>

@@ -20,22 +20,22 @@
             <div class="container-boxed max">
                 <div class="navbar pt-0 pb-0">
                     <div class="collapse navbar-collapse" id="navbarText">
-                        <?php if (isset($_GET['e'])) { ?>
+                        <?php if ($customerType == 2) { ?>
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="./post-job.php?e">Post a job</a>
+                                    <a class="nav-link" href="./post-job.php">Post a job</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./manage-jobs.php?e">Manage Jobs</a>
+                                    <a class="nav-link" href="./manage-jobs.php">Manage Jobs</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./manage-application.php?e">Manage Application</a>
+                                    <a class="nav-link" href="./manage-application.php">Manage Application</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="./profile-company.php?e">Profile</a>
+                                    <a class="nav-link" href="./profile-company.php">Profile</a>
                                 </li>
                             </ul>
-                        <?php } else { ?>
+                        <?php } else if ($customerType == 1) { ?>
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
                                     <a class="nav-link" href="./jobs.php">Find Jobs</a>
@@ -50,9 +50,24 @@
                                     <a class="nav-link" href="./profile.php">Profile</a>
                                 </li>
                             </ul>
+                        <?php } else { ?>
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="./jobs.php">Find Jobs</a>
+                                </li>
+                            </ul>
                         <?php } ?>
                         <span class="navbar-text">
-                            <ul class="navbar-nav mr-auto align-center">
+                            <?php if ($isLogin) { ?>
+                                <ul class="navbar-nav mr-auto align-center">
+                                <li class="nav-item-member-profile login-link align-center">
+                                    <a class="nav-link" href="./logout.php">
+                                        <i class="fas fa-sign-in-alt"></i>&nbsp;Logout
+                                    </a>
+                                </li>
+                            </ul>
+                            <?php } else { ?>
+                                <ul class="navbar-nav mr-auto align-center">
                                 <li class="nav-item-member-profile login-link align-center">
                                     <a class="nav-link" href="./login.php">
                                         <i class="fas fa-sign-in-alt"></i>&nbsp;Login
@@ -64,6 +79,7 @@
                                     </a>
                                 </li>
                             </ul>
+                            <?php } ?>
                         </span>
                     </div>
                 </div>
