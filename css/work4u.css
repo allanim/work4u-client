@@ -403,3 +403,73 @@ header h1, h2, h3 {
 .member-manage-table .member-manage-action .fa-trash-alt {
     color: #d9534f;
 }
+
+.job-package {
+    /*padding: 50px;*/
+}
+
+.pricing-table {
+
+}
+
+.pricing-table, .row {
+    /*margin-left: -1.0714285714286em;*/
+    /*margin-right: -1.0714285714286em*/
+}
+
+.pricing-4-col .pricing-column {
+    float: left;
+    width: 25%;
+    position: relative;
+    min-height: 1px;
+    padding-left: 1.0714285714285714em;
+    padding-right: 1.0714285714285714em;
+    margin-bottom: 20px;
+}
+
+.pricing-table .pricing-column .pricing-content {
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: #7DB376 solid 1px;
+    box-sizing: border-box;
+    color: #44494b;
+    display: block;
+}
+
+.pricing-table .pricing-column .pricing-content .pricing-header {
+    padding: .42857142857142855em .8571428571428571em;
+}
+
+.pricing-table .pricing-column .pricing-content .pricing-info {
+    padding: 1em 0;
+}
+
+.pricing-table .pricing-column .pricing-content .pricing-footer {
+    border-top: none;
+    padding: .42857142857142855em .8571428571428571em 2.142857142857143em;
+    text-align: center;
+}
+
+.pricing-header .pricing-value .package-price {
+    border-color: #7DB376;
+}
+
+.pricing-table .pricing-column .pricing-content .pricing-header .pricing-title,
+.pricing-table .pricing-column .pricing-content .pricing-header .pricing-value {
+    text-align: center;
+}
+
+
+
+.pricing-table .pricing-column .pricing-content .pricing-header .pricing-value .price {
+    font-size: 1em;
+    font-weight: 400;
+    background: #2e2e2e;
+    border-radius: 50%;
+    color: #fff;
+    display: inline-block;
+    height: 150px;
+    line-height: 140px;
+    width: 150px;
+    border: 5px solid #7DB376;
+}
