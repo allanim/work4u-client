@@ -5,6 +5,9 @@ if ($isLogin) {
     header("Location: ./");
 }
 
+$cookieEmail = $_COOKIE['customerEmail'];
+$cookiePassword = $_COOKIE['customerPassword'];
+
 ?>
 
 <!DOCTYPE html>
@@ -23,12 +26,13 @@ if ($isLogin) {
                 <div id="fail-message" class="alert alert-danger collapse" role="alert"></div>
                 <form id="login" class="needs-validation" method="post" action="login-process.php">
                     <input type="email" name="email" id="email" class="form-control mb-3" placeholder="E-Mail"
-                           required>
+                           value="<?= $cookieEmail ?>" required>
                     <input type="password" name="password" id="password" class="form-control mb-3"
-                           placeholder="Password" required>
+                           placeholder="Password" value="<?= $cookiePassword ?>" required>
                     <div class="form-control-flat">
                         <label class="checkbox">
-                            <input type="checkbox" class="rememberMe" name="rememberMe" value="forever">
+                            <input type="checkbox" class="rememberMe" name="rememberMe" value="forever"
+                                <?= ($cookieEmail) ? "checked" : "" ?>>
                             <i></i> Remember Me
                         </label>
                     </div>

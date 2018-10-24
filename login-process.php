@@ -16,8 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] != "POST") {
         echo "Invalid email or password";
     } else {
         if ($rememberMe) {
-            $_COOKIE['customerEmail'] = $email;
-            $_COOKIE['customerPassword'] = $password;
+            setcookie('customerEmail', $email, time() + (86400 * 30), "/");
+            setcookie('customerPassword', $password, time() + (86400 * 30), "/");
+        } else {
+            setcookie('customerEmail', $email, time() - 1, "/");
+            setcookie('customerPassword', $password, time() - 1, "/");
         }
     }
 } else {
