@@ -45,6 +45,24 @@ function getJobs($connection, $page, $limit)
     return $jobs;
 }
 
+function getManageJobs($connection, $customerId, $page, $limit)
+{
+    $jobs = array();
+
+    if (!isset($limit)) $limit = 10;
+    if (!isset($page)) $page = 1;
+    $start_from = ($page - 1) * $limit;
+
+    $sql = "SELECT * FROM JOBS, EMPLOYEES WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND EMPLOYEES.CUSTOMER_ID = $customerId ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($jobs, $row);
+        }
+    }
+    return $jobs;
+}
+
+
 function getLatestJobs($connection, $limit)
 {
     if (!isset($limit)) $limit = 3;
@@ -53,9 +71,11 @@ function getLatestJobs($connection, $limit)
 
 function postJob($connection, $data)
 {
+    $title = addslashes($data['title']);
+    $description = addslashes($data['description']);
     $now = date_create("now", timezone_open('America/Toronto'))->format('Y-m-d H:i:s');
     $postJob = "INSERT INTO JOBS (EMPLOYEE_ID, TITLE, DESCRIPTION, LOCATION, TYPE, CLOSING, EMAIL, REG_DATE) "
-        . "VALUE ({$data['employeeId']}, '{$data['title']}', '{$data['description']}', '{$data['location']}', {$data['type']}, '{$data['closing']}', '{$data['email']}', '{$now}' )";
+        . "VALUE ({$data['employeeId']}, '{$title}', '{$description}', '{$data['location']}', {$data['type']}, '{$data['closing']}', '{$data['email']}', '{$now}' )";
     return mysqli_query($connection, $postJob);
 }
 
@@ -117,9 +137,9 @@ function updateEmployee($connection, $employee)
     $sql = "UPDATE EMPLOYEES  SET "
         . "COMPANY_NAME = '{$employee['company_name']}', "
         . "COMPANY_WEBSITE = '{$employee['company_website']}', "
-        . "COMPANY_DESC = '{$employee['company_description']}', "
+        . "COMPANY_DESC = '{$employee['company_desc']}', "
         . "COMPANY_LOGO = '{$employee['company_logo']}', "
-        . "COMPANY_GOOGLE_PLUS = '{$employee['company_googlePlus']}', "
+        . "COMPANY_GOOGLE_PLUS = '{$employee['company_googleplus']}', "
         . "COMPANY_FACEBOOK = '{$employee['company_facebook']}', "
         . "COMPANY_LINKEDIN = '{$employee['company_linkedin']}', "
         . "COMPANY_TWITTER = '{$employee['company_twitter']}', "

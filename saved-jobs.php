@@ -1,3 +1,17 @@
+<?php
+include("_session.php");
+include("_db-connect.php");
+include("_func_jobs.php");
+
+if (!$isLogin) {
+    header("Location: ./");
+} else if ($customerType != 1) {
+    header("Location: ./");
+}
+//$jobs = getManageJobs($connection, $customerId, $page, $limit);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include("_head.php"); ?>

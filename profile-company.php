@@ -1,3 +1,17 @@
+<?php
+include("_session.php");
+include("_db-connect.php");
+include("_func_jobs.php");
+
+if (!$isLogin) {
+    header("Location: ./");
+} else if ($customerType != 2) {
+    header("Location: ./");
+}
+//$jobs = getManageJobs($connection, $customerId, $page, $limit);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include("_head.php"); ?>
@@ -10,7 +24,7 @@
     <div class="container-wrap heading-content shadow">
         <div class="container-boxed max page-heading pl-10 pr-10">
             <div class="page-heading-info">
-                <h1 class="page-title">Profile of company</h1>
+                <h1 class="page-title">Profile of company </h1>
             </div>
             <div class="page-sub-heading-info">
                 <p>Describe your company</p>

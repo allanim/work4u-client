@@ -70,7 +70,7 @@ $employee = getEmployee($connection, $customerId);
                                         <div class="col-sm-9">
                                             <select id="location" name="location"
                                                     data-placeholder="Enter a city and country or leave it blank"
-                                                    class="form-control form-control-chosen">
+                                                    class="form-control form-control-chosen" required>
                                                 <option value="">&nbsp;</option>
                                                 <option value="Toronto, ON">Toronto, ON</option>
                                                 <option value="Ottawa, ON">Ottawa, ON</option>
@@ -128,7 +128,8 @@ $employee = getEmployee($connection, $customerId);
                                             <label for="company_name" class="col-sm-3 control-label">Company
                                                 Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_name" value=""
+                                                <input type="text" class="form-control" id="company_name"
+                                                       value="<?= $employee['COMPANY_NAME'] ?>"
                                                        name="company_name" placeholder="Enter your company name"
                                                        required>
                                             </div>
@@ -137,7 +138,8 @@ $employee = getEmployee($connection, $customerId);
                                             <label for="company_website" class="col-sm-3 control-label">Company
                                                 Website</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_website" value=""
+                                                <input type="text" class="form-control" id="company_website"
+                                                       value="<?= $employee['COMPANY_WEBSITE'] ?>"
                                                        name="company_website" placeholder="Enter your company website">
                                             </div>
                                         </div>
@@ -147,7 +149,9 @@ $employee = getEmployee($connection, $customerId);
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" id="company_desc" name="company_desc"
                                                           rows="8"
-                                                          placeholder="Enter your company description"></textarea>
+                                                          placeholder="Enter your company description">
+                                                    <?= $employee['COMPANY_DESC'] ?>
+                                                </textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -161,7 +165,8 @@ $employee = getEmployee($connection, $customerId);
                                             <label for="company_googleplus"
                                                    class="col-sm-3 control-label">Google+</label>
                                             <div class="col-sm-9">
-                                                <input type="url" class="form-control" id="company_googleplus" value=""
+                                                <input type="url" class="form-control" id="company_googleplus"
+                                                       value="<?= $employee['COMPANY_GOOGLE_PLUS'] ?>"
                                                        name="company_googleplus" placeholder="http://">
                                             </div>
                                         </div>
@@ -169,7 +174,8 @@ $employee = getEmployee($connection, $customerId);
                                             <label for="company_facebook"
                                                    class="col-sm-3 control-label">Facebook</label>
                                             <div class="col-sm-9">
-                                                <input type="url" class="form-control" id="company_facebook" value=""
+                                                <input type="url" class="form-control" id="company_facebook"
+                                                       value="<?= $employee['COMPANY_FACEBOOK'] ?>"
                                                        name="company_facebook" placeholder="http://">
                                             </div>
                                         </div>
@@ -177,14 +183,16 @@ $employee = getEmployee($connection, $customerId);
                                             <label for="company_linkedin"
                                                    class="col-sm-3 control-label">LinkedIn</label>
                                             <div class="col-sm-9">
-                                                <input type="url" class="form-control" id="company_linkedin" value=""
+                                                <input type="url" class="form-control" id="company_linkedin"
+                                                       value="<?= $employee['COMPANY_LINKEDIN'] ?>"
                                                        name="company_linkedin" placeholder="http://">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="company_twitter" class="col-sm-3 control-label">Twitter</label>
                                             <div class="col-sm-9">
-                                                <input type="url" class="form-control" id="company_twitter" value=""
+                                                <input type="url" class="form-control" id="company_twitter"
+                                                       value="<?= $employee['COMPANY_TWITTER'] ?>"
                                                        name="company_twitter" placeholder="http://">
                                             </div>
                                         </div>
@@ -192,7 +200,8 @@ $employee = getEmployee($connection, $customerId);
                                             <label for="company_instagram"
                                                    class="col-sm-3 control-label">Instagram</label>
                                             <div class="col-sm-9">
-                                                <input type="url" class="form-control" id="company_instagram" value=""
+                                                <input type="url" class="form-control" id="company_instagram"
+                                                       value="<?= $employee['COMPANY_INSTAGRAM'] ?>"
                                                        name="company_instagram" placeholder="http://">
                                             </div>
                                         </div>
@@ -223,7 +232,6 @@ $employee = getEmployee($connection, $customerId);
         event.preventDefault();
         const post_url = $(this).attr("action");
         const form_data = $(this).serialize();
-        const params = new URLSearchParams(location.search);
 
         $.post(post_url, form_data, function () {
             $(location).attr('href', './manage-jobs.php')

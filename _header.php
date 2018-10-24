@@ -1,3 +1,27 @@
+<?php
+function startsWith($haystack, $needle) {
+    return (strpos($haystack, $needle) === 0);
+}
+
+if (startsWith($_SERVER['PHP_SELF'], '/post-job.php')) {
+    $active1 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/manage-jobs.php')) {
+    $active2 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/manage-application.php')) {
+    $active3 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/profile-company.php')) {
+    $active4 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/jobs.php')) {
+    $active11 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/saved-jobs.php')) {
+    $active12 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/applied-jobs.php')) {
+    $active13 = " active";
+} else if (startsWith($_SERVER['PHP_SELF'], '/profile.php')) {
+    $active14 = " active";
+}
+?>
+
 <header class="site-header shadow">
     <div class="header-wrapper">
         <div class="navbar pt-0 pb-0">
@@ -22,37 +46,37 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <?php if ($customerType == 2) { ?>
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
+                                <li class="nav-item<?=$active1?>">
                                     <a class="nav-link" href="./post-job.php">Post a job</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item<?=$active2?>">
                                     <a class="nav-link" href="./manage-jobs.php">Manage Jobs</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item<?=$active3?>">
                                     <a class="nav-link" href="./manage-application.php">Manage Application</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item<?=$active4?>">
                                     <a class="nav-link" href="./profile-company.php">Profile</a>
                                 </li>
                             </ul>
                         <?php } else if ($customerType == 1) { ?>
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
+                                <li class="nav-item<?=$active11?>">
                                     <a class="nav-link" href="./jobs.php">Find Jobs</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item<?=$active12?>">
                                     <a class="nav-link" href="./saved-jobs.php">Saved Jobs</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item<?=$active13?>">
                                     <a class="nav-link" href="./applied-jobs.php">Applied Jobs</a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item<?=$active14?>">
                                     <a class="nav-link" href="./profile.php">Profile</a>
                                 </li>
                             </ul>
                         <?php } else { ?>
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
+                                <li class="nav-item<?=$active11?>">
                                     <a class="nav-link" href="./jobs.php">Find Jobs</a>
                                 </li>
                             </ul>

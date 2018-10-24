@@ -52,3 +52,16 @@ $("[id^=select-package]").submit(function (event) {
         $("#fail-message").html(error.responseText).show();
     });
 });
+
+$("#post-job").submit(function (event) {
+    event.preventDefault();
+    const post_url = $(this).attr("action");
+    const form_data = $(this).serialize();
+
+    $.post(post_url, form_data, function () {
+        $(location).attr('href', './manage-jobs.php')
+    }).fail(function (error) {
+        console.log(error.responseText);
+        $("#fail-message").html(error.responseText).show();
+    });
+});

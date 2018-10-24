@@ -1,3 +1,19 @@
+<?php
+include("_session.php");
+include("_db-connect.php");
+include("_func_jobs.php");
+
+if (!$isLogin) {
+    header("Location: ./");
+} else if ($customerType != 2) {
+    header("Location: ./");
+}
+$limit = 10;
+$page = isset($_GET['p']) ? $_GET['p'] : 1;
+//$jobs = getManageJobs($connection, $customerId, $page, $limit);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include("_head.php"); ?>
@@ -44,7 +60,7 @@
                                 <th>Applied Job</th>
                                 <th>Applied Date</th>
                                 <th class="text-center">Resume</th>
-                                <th class="text-center">Action</th>
+<!--                                <th class="text-center">Action</th>-->
                             </tr>
                             </thead>
                             <tbody>
@@ -64,17 +80,17 @@
                                             <i class="fas fa-file-download"> allan-resume.pdf</i>
                                         </a>
                                     </td>
-                                    <td class="text-center">
-                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip"
-                                           title="Edit Job">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="./manage-jobs.php" class="member-manage-action action-delete"
-                                           data-toggle="tooltip"
-                                           title="Delete Job">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
-                                    </td>
+<!--                                    <td class="text-center">-->
+<!--                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip"-->
+<!--                                           title="Edit Job">-->
+<!--                                            <i class="fas fa-edit"></i>-->
+<!--                                        </a>-->
+<!--                                        <a href="./manage-jobs.php" class="member-manage-action action-delete"-->
+<!--                                           data-toggle="tooltip"-->
+<!--                                           title="Delete Job">-->
+<!--                                            <i class="fas fa-trash-alt"></i>-->
+<!--                                        </a>-->
+<!--                                    </td>-->
                                 </tr>
                             <?php } ?>
                             </tbody>
