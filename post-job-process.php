@@ -13,7 +13,9 @@ if (!$isLogin) {
 } else {
     $employee = $_POST;
     $employee['employeeId'] = getEmployee($connection, $customerId)['ID'];
-    if (!postJob($connection, $employee) || !updateEmployee($connection, $employee)) {
+    if (!postJob($connection, $employee)
+//        || !updateEmployee($connection, $employee)
+    ) {
         http_response_code(409);
         echo "DB Error";
     }
