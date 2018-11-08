@@ -53,7 +53,7 @@ function getManageJobs($connection, $customerId, $page, $limit)
     if (!isset($page)) $page = 1;
     $start_from = ($page - 1) * $limit;
 
-    $sql = "SELECT * FROM JOBS, EMPLOYEES WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND EMPLOYEES.CUSTOMER_ID = $customerId ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    $sql = "SELECT * FROM EMPLOYEES, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND EMPLOYEES.CUSTOMER_ID = $customerId ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
     if ($result = mysqli_query($connection, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
             array_push($jobs, $row);
@@ -146,4 +146,20 @@ function updateEmployee($connection, $employee)
         . "COMPANY_INSTAGRAM= '{$employee['company_instagram']}' "
         . "WHERE ID = {$employee['employeeId']} ";
     return mysqli_query($connection, $sql);
+}
+
+function getJobType($jobType) {
+
+    $result = "None";
+    if ($jobType == 1) {
+        $result = "Contract";
+    } else if ($jobType == 2) {
+        $result = "Co-op";
+    } else if ($jobType == 3) {
+        $result = "Full Time";
+    } else if ($jobType == 4) {
+        $result = "Part Time";
+    }
+
+    return $result;
 }

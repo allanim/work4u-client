@@ -25,14 +25,15 @@ if (!$job) {
     <div class="container-wrap heading-content shadow">
         <div class="container-boxed max page-heading pl-10 pr-10">
             <div class="page-heading-info">
-                <h1 class="page-title"><?=$job['TITLE']?></h1>
+                <h1 class="page-title"><?= $job['TITLE'] ?></h1>
             </div>
             <div class="page-sub-heading-info">
                 <p class="content-meta">
-                    <span class="job-type mr-3"><i class="far fa-bookmark"></i> <?=$job['TYPE']?></span>
+                    <span class="job-type mr-3"><i class="far fa-bookmark"></i> <?= getJobType($job['TYPE']) ?></span>
                     <span class="job-location mr-3"><i
-                                class="fas fa-map-marker-alt"></i><em>&nbsp;<?=$job['LOCATION']?></em></span>
-                    <span><time class="entry-date" datetime="2018-08-10T09:46:53+00:00"><i class="far fa-clock"></i>&nbsp;<?=$job['CLOSING']?></time></span>
+                                class="fas fa-map-marker-alt"></i><em>&nbsp;<?= $job['LOCATION'] ?></em></span>
+                    <span><time class="entry-date" datetime="2018-08-10T09:46:53+00:00"><i class="far fa-clock"></i>&nbsp;
+                            <?= date_format(date_create($job['CLOSING']), "Y-m-d") ?></time></span>
                 </p>
             </div>
         </div>
@@ -47,7 +48,7 @@ if (!$job) {
                     <div class="card mt-3 p-3 job-card">
                         <div class="card-body">
                             <p class="card-text job-desc">
-                                <?=$job['DESCRIPTION']?>
+                                <?= $job['DESCRIPTION'] ?>
                             </p>
 
                             <div class="job-action">
@@ -71,20 +72,39 @@ if (!$job) {
                                     <img width="300" height="300" src="images/company/rbc.png" alt="RBC"/>
                                 </a>
                             </div>
-                            <h3 class="company-title"><?=$job['COMPANY_NAME']?></h3>
+                            <h3 class="company-title"><?= $job['COMPANY_NAME'] ?></h3>
                         </div>
                         <div class="company-info">
-                            <?=$job['COMPANY_DESC']?>
+                            <?= $job['COMPANY_DESC'] ?>
                             <div class="job-social clearfix">
                                 <span class="noo-social-title">Connect with us</span>
-                                <a href="#" class="company_website" target="_blank">
-                                    <span>http://www.rbc.com</span>
-                                </a>
-                                <a class="icon fab fa-facebook" href="#" target="_blank"></a>
-                                <a class="icon fab fa-twitter" href="#" target="_blank"></a>
-                                <a class="icon fab fa-google-plus" href="#" target="_blank"></a>
-                                <a class="icon fab fa-linkedin" href="#" target="_blank"></a>
-                                <a class="icon fab fa-instagram" href="#" target="_blank"></a>
+                                <?php if ($job['COMPANY_WEBSITE']) { ?>
+                                    <a href="<?= $job['COMPANY_WEBSITE'] ?>" class="company_website" target="_blank">
+                                        <span><?= $job['COMPANY_WEBSITE'] ?></span>
+                                    </a>
+                                <?php } else { ?>
+                                    <a href="#" class="company_website"></a>
+                                <?php } ?>
+                                <?php if ($job['COMPANY_FACEBOOK']) { ?>
+                                    <a class="icon fab fa-facebook" href="<?= $job['COMPANY_FACEBOOK'] ?>"
+                                       target="_blank"></a>
+                                <?php } ?>
+                                <?php if ($job['COMPANY_TWITTER']) { ?>
+                                    <a class="icon fab fa-twitter" href="<?= $job['COMPANY_TWITTER'] ?>"
+                                       target="_blank"></a>
+                                <?php } ?>
+                                <?php if ($job['COMPANY_GOOGLE_PLUS']) { ?>
+                                    <a class="icon fab fa-google-plus" href="<?= $job['COMPANY_GOOGLE_PLUS'] ?>"
+                                       target="_blank"></a>
+                                <?php } ?>
+                                <?php if ($job['COMPANY_LINKEDIN']) { ?>
+                                    <a class="icon fab fa-linkedin" href="<?= $job['COMPANY_LINKEDIN'] ?>"
+                                       target="_blank"></a>
+                                <?php } ?>
+                                <?php if ($job['COMPANY_INSTAGRAM']) { ?>
+                                    <a class="icon fab fa-instagram" href="<?= $job['COMPANY_INSTAGRAM'] ?>"
+                                       target="_blank"></a>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
