@@ -50,23 +50,25 @@ $jobs = getAppliedJobs($connection, $customerId, $page, $limit);
                             </tr>
                             </thead>
                             <tbody>
-                            <?php for ($i = 0; $i < 10; $i++) { ?>
+                            <?php for ($i = 0; $i < count($jobs); $i++) {
+                                $job = $jobs[$i];
+                                ?>
                                 <tr>
                                     <td>
-                                        <a href="./job-detail.php"><strong>RBC Amplify</strong></a>
+                                        <a href="./job-detail.php"><strong><?=$job['COMPANY_NAME']?></strong></a>
                                     </td>
                                     <td>
-                                        <a href="./job-detail.php"><strong>Student Job</strong></a>
+                                        <a href="./job-detail.php"><strong><?= getJobType($job['TYPE']) ?></strong></a>
                                     </td>
                                     <td>
-                                        <i class="far fa-clock"></i>&nbsp;<em>Nov 11, 2018</em>
+                                        <i class="far fa-clock"></i>&nbsp;<em><?= date_format(date_create($job['APPLIED_DATE']), "Y-m-d") ?></em>
                                     </td>
                                     <td>
-                                        <i class="fas fa-map-marker-alt"></i>&nbsp<em>Toronto, Ontario</em>
+                                        <i class="fas fa-map-marker-alt"></i>&nbsp;<em><?= $job['LOCATION'] ?></em>
                                     </td>
                                     <td class="text-center">
                                         <a class="view_applications" href="#" data-toggle="tooltip" title="CV">
-                                            <i class="fas fa-file-download"> allan-resume.pdf</i>
+                                            <i class="fas fa-file-download"> <?= $job['RESUME'] ?></i>
                                         </a>
                                     </td>
 <!--                                    <td class="text-center">-->
