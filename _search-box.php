@@ -1,5 +1,11 @@
 <?php
 $isMain = basename($_SERVER['PHP_SELF']) == "index.php";
+
+$keyword = isset($_GET['k']) ? $_GET['k'] : "";
+$location = isset($_GET['loc']) ? $_GET['loc'] : "";
+
+$supportedLocation = ["Toronto, ON", "Ottawa, ON", "Mississauga, ON", "Brampton, ON", "Hamilton, ON", "London, ON"
+    , "Markham, ON", "Vaughan, ON", "Kitchener, ON", "Windsor, ON"];
 ?>
 
 <div class="search-box">
@@ -12,23 +18,19 @@ $isMain = basename($_SERVER['PHP_SELF']) == "index.php";
         <div class="form-row search-form">
             <div class="col-md-5">
                 <label class="sr-only" for="search-keyword">Keyword</label>
-                <input type="text" class="form-control" name="keyword" id="search-keyword" placeholder="Keyword"
-                       value="">
+                <input type="text" class="form-control" name="k" id="search-keyword" placeholder="Keyword"
+                       value="<?= $keyword ?>">
             </div>
             <div class="col-md-5">
                 <label class="sr-only" for="search-location">Location</label>
-                <select name="location" id="search-location" class="form-control">
+                <select name="loc" id="search-location" class="form-control">
                     <option value="">All Location</option>
-                    <option value="">Toronto, ON</option>
-                    <option value="">Ottawa, ON</option>
-                    <option value="">Mississauga, ON</option>
-                    <option value="">Brampton, ON</option>
-                    <option value="">Hamilton, ON</option>
-                    <option value="">London, ON</option>
-                    <option value="">Markham, ON</option>
-                    <option value="">Vaughan, ON</option>
-                    <option value="">Kitchener, ON</option>
-                    <option value="">Windsor, ON</option>
+                    <?php
+                    for ($i = 0; $i < count($supportedLocation); $i++) {
+                        $selected = ($supportedLocation[$i] == $location) ? "selected" : "";
+                        ?>
+                        <option value="<?= $supportedLocation[$i] ?>" <?= $selected ?>><?= $supportedLocation[$i] ?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="col-md-2">

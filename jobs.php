@@ -5,6 +5,11 @@ include("_func_jobs.php");
 
 
 //$jobs = getManageJobs($connection, $customerId, $page, $limit);
+$limit = 10;
+$page = isset($_GET['p']) ? $_GET['p'] : 1;
+$keyword = isset($_GET['k']) ? $_GET['k'] : "";
+$location = isset($_GET['loc']) ? $_GET['loc'] : "";
+$jobs = getJobs($connection, $page, $limit, $keyword, $location);
 
 ?>
 
@@ -33,13 +38,16 @@ include("_func_jobs.php");
                             <h3>Latest Jobs</h3>
                         </div>
                         <div>
-                            <?php for ($i = 0; $i < 10; $i++) {
+                            <?php
+                            for ($i = 0; $i < count($jobs); $i++) {
+                                $job = $jobs[$i];
                                 include("_job_row.php");
-                            } ?>
+                            }
+                            ?>
                         </div>
 
                         <div class="pagination">
-                            <a href="./jobs.php" class="btn btn-default btn-block btn-loadmore">Load More</a>
+<!--                            <a href="./jobs.php" class="btn btn-default btn-block btn-loadmore">Load More</a>-->
                         </div>
 
                     </div>

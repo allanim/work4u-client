@@ -28,7 +28,7 @@ function getJob($connection, $id)
     return mysqli_fetch_assoc(mysqli_query($connection, $sql));
 }
 
-function getJobs($connection, $page, $limit)
+function getJobs($connection, $page, $limit, $keyword, $location)
 {
     $jobs = array();
 
@@ -36,7 +36,16 @@ function getJobs($connection, $page, $limit)
     if (!isset($page)) $page = 1;
     $start_from = ($page - 1) * $limit;
 
-    $sql = "SELECT * FROM EMPLOYEES, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    $addQuery = "";
+    if (isset($keyword) && $keyword != "") {
+        $addQuery .= "AND (JOBS.TITLE LIKE '%{$keyword}%' OR JOBS.DESCRIPTION LIKE '%{$keyword}%')";
+    }
+
+    if (isset($location) && $location != "") {
+        $addQuery .= "AND JOBS.LOCATION = '{$location}'";
+    }
+
+    $sql = "SELECT * FROM EMPLOYEES, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID {$addQuery} ORDER BY JOBS.ID DESC LIMIT {$start_from}, {$limit}";
     if ($result = mysqli_query($connection, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
             array_push($jobs, $row);
@@ -66,7 +75,7 @@ function getManageJobs($connection, $customerId, $page, $limit)
 function getLatestJobs($connection, $limit)
 {
     if (!isset($limit)) $limit = 3;
-    return getJobs($connection, 1, $limit);
+    return getJobs($connection, 1, $limit, '', '');
 }
 
 function postJob($connection, $data)
@@ -148,7 +157,8 @@ function updateEmployee($connection, $employee)
     return mysqli_query($connection, $sql);
 }
 
-function getJobType($jobType) {
+function getJobType($jobType)
+{
 
     $result = "None";
     if ($jobType == 1) {

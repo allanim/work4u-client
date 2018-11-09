@@ -33,10 +33,12 @@ $jobs = getLatestJobs($connection, 3);
                             <h3>Latest Jobs</h3>
                         </div>
                         <div>
-                            <?php for ($i = 0; $i < count($jobs); $i++) {
+                            <?php
+                            for ($i = 0; $i < count($jobs); $i++) {
                                 $job = $jobs[$i];
                                 include("_job_row.php");
-                            } ?>
+                            }
+                            ?>
                         </div>
 
                     </div>
