@@ -34,6 +34,12 @@ function updatePassword($connection, $id, $currentPassword, $newPassword)
     return mysqli_query($connection, $sql);
 }
 
+function updateCustomer($connection, $id, $customer)
+{
+    $sql = "UPDATE CUSTOMERS SET NAME = '{$customer['name']}', EMAIL = '{$customer['email']}' WHERE ID = {$id}";
+    return mysqli_query($connection, $sql);
+}
+
 function updateEmployee($connection, $employee)
 {
     $sql = "UPDATE EMPLOYEES  SET "

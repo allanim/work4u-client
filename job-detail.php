@@ -51,14 +51,16 @@ if (!$job) {
                                 <?= $job['DESCRIPTION'] ?>
                             </p>
 
-                            <div class="job-action">
-                                <a class="btn btn-primary" data-target="#applyJobModal" href="javascript:void(0);"
-                                   data-toggle="modal">
-                                    <i class="fas fa-sign-in-alt"></i>&nbsp;Apply for this job
-                                </a>
-                                <a class="btn btn-primary" href="javascript:void(0);" data-toggle="tooltip"
-                                   data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Saved Job</a>
-                            </div>
+                            <?php if ($customerType == 1) { ?>
+                                <div class="job-action">
+                                    <a class="btn btn-primary" data-target="#applyJobModal" href="javascript:void(0);"
+                                       data-toggle="modal">
+                                        <i class="fas fa-sign-in-alt"></i>&nbsp;Apply for this job
+                                    </a>
+                                    <a class="btn btn-primary" href="javascript:void(0);" data-toggle="tooltip"
+                                       data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Saved Job</a>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
