@@ -47,8 +47,10 @@ $jobList = getJobTitleList($connection, $customerId);
                         </div>
                         <select class="custom-select" id="jobSelect" style="max-width: 200px;">
                             <option value="">-All jobs-</option>
-                            <?php for ($i = 0; $i < count($jobList); $i++) { ?>
-                                <option value="<?= $jobList[$i]['ID'] ?>"><?= $jobList[$i]['TITLE'] ?></option>
+                            <?php for ($i = 0; $i < count($jobList); $i++) {
+                                $selected = ($jobList[$i]['ID'] == $jobId) ? "selected" : "";
+                                ?>
+                                <option value="<?= $jobList[$i]['ID'] ?>" <?= $selected ?>><?= $jobList[$i]['TITLE'] ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -116,7 +118,7 @@ $jobList = getJobTitleList($connection, $customerId);
 <!-- End PAGE -->
 <script>
     $("#jobSelect").change(function (event) {
-        const jobId = $(this). children("option:selected"). val();
+        const jobId = $(this).children("option:selected").val();
         $(location).attr('href', './manage-application.php?job=' + jobId);
     });
 </script>

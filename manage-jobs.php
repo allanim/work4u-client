@@ -68,8 +68,8 @@ $jobs = getManageJobs($connection, $customerId, $page, $limit);
                                         <span><i class="far fa-clock"></i>&nbsp;<em><?=$jobs[$i]['CLOSING']?></em></span>
                                     </td>
                                     <td class="text-center">
-                                        <a href="manage-jobs.php"
-                                           class="job-application-status job-application-status-publish">132</a>
+                                        <a href="manage-application.php?job=<?=$jobs[$i]['ID']?>"
+                                           class="job-application-status job-application-status-publish">Application</a>
                                     </td>
 <!--                                    <td class="member-manage-actions hidden-xs text-center">-->
 <!--                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip"-->
