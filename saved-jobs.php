@@ -8,7 +8,7 @@ if (!$isLogin) {
 } else if ($customerType != 1) {
     header("Location: ./");
 }
-//$jobs = getManageJobs($connection, $customerId, $page, $limit);
+$jobs = getSavedJobs($connection, $customerId, $page, $limit);
 
 ?>
 
@@ -41,13 +41,18 @@ if (!$isLogin) {
                         <div class="job-title">
                         </div>
                         <div>
-                            <?php for ($i = 0; $i < 5; $i++) {
+                            <?php
+                            for ($i = 0; $i < count($jobs); $i++) {
+                                $job = $jobs[$i];
                                 include("_job_row.php");
-                            } ?>
+                            }
+                            if (count($job) == 0) {
+                                echo "Don't have saved jobs";
+                            }
+                            ?>
                         </div>
 
                         <div class="pagination">
-                            <a href="./jobs.php" class="btn btn-default btn-block btn-loadmore">Remove</a>
                         </div>
 
                     </div>

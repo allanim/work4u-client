@@ -11,6 +11,7 @@ if (!$job) {
     header("Location: ./");
 }
 
+$isSavedJob = isSavedJobs($connection, $customerId, $job['id']);
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +58,17 @@ if (!$job) {
                                        data-toggle="modal">
                                         <i class="fas fa-sign-in-alt"></i>&nbsp;Apply for this job
                                     </a>
-                                    <a class="btn btn-primary" href="javascript:void(0);" data-toggle="tooltip"
-                                       data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Saved Job</a>
+                                    <?php if ($isSavedJob) { ?>
+                                        <button class="btn btn-primary" id="save-job" data-toggle="tooltip"
+                                                data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Save
+                                            Job
+                                        </button>
+                                    <?php } else {?>
+                                        <button class="btn btn-secondary" data-toggle="tooltip"
+                                                data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Saved
+                                            Job
+                                        </button>
+                                    <?php } ?>
                                 </div>
                             <?php } ?>
                         </div>
@@ -120,7 +130,21 @@ if (!$job) {
 
 </div>
 <!-- End PAGE -->
-
+<script>
+    $("#save-job").click(function (event) {
+        event.preventDefault();
+        const post_url = "save-job-process.php";
+        const form_data = "jobId=<?=$job['ID']?>";
+        $.post(post_url, form_data, function (msg) {
+            $("#m-success #messageBody").html(msg);
+            $("#m-success").modal("show");
+        }).fail(function (error) {
+            console.log(error.responseText);
+            $("#m-fail #messageBody").html(error.responseText);
+            $("#m-fail").modal("show");
+        });
+    });
+</script>
 <?php include("_script.php"); ?>
 </body>
 </html>

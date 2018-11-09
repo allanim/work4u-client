@@ -173,3 +173,46 @@ function getJobType($jobType)
 
     return $result;
 }
+
+function saveJob($connection, $customerId, $jobId)
+{
+    $now = date_create("now", timezone_open('America/Toronto'))->format('Y-m-d H:i:s');
+    $sql = "INSERT INTO SAVED_JOB (CUSTOMER_ID, JOB_ID, SAVED_DATE)"
+        . "VALUE ({$customerId}, {$jobId}, '{$now}')";
+    return mysqli_query($connection, $sql);
+}
+
+function deleteSavedJob($connection, $savedJobId)
+{
+    $sql = "DELETE FROM SAVED_JOB WHERE ID = {$savedJobId};";
+    return mysqli_query($connection, $sql);
+}
+
+function getSavedJobs($connection, $customerId, $page, $limit)
+{
+    $jobs = array();
+
+    if (!isset($limit)) $limit = 10;
+    if (!isset($page)) $page = 1;
+    $start_from = ($page - 1) * $limit;
+
+    $sql = "SELECT * FROM EMPLOYEES, SAVED_JOB, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND JOBS.ID = SAVED_JOB.JOB_ID AND SAVED_JOB.CUSTOMER_ID = $customerId ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($jobs, $row);
+        }
+    }
+    return $jobs;
+}
+
+function isSavedJobs($connection, $customerId, $jobId)
+{
+    $sql = "SELECT * FROM SAVED_JOB WHERE CUSTOMER_ID = $customerId AND JOB_ID = $jobId";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            return true;
+        }
+    }
+    return false;
+
+}
