@@ -71,6 +71,18 @@ function getManageJobs($connection, $customerId, $page, $limit)
     return $jobs;
 }
 
+function getJobTitleList($connection, $customerId)
+{
+    $jobs = array();
+
+    $sql = "SELECT JOBS.ID, JOBS.TITLE FROM EMPLOYEES, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND EMPLOYEES.CUSTOMER_ID = $customerId ORDER BY JOBS.ID DESC";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($jobs, $row);
+        }
+    }
+    return $jobs;
+}
 
 function getLatestJobs($connection, $limit)
 {
@@ -259,4 +271,26 @@ function isAppliedJobs($connection, $customerId, $jobId)
     }
     return false;
 
+}
+
+function getManageAppliedJobs($connection, $customerId, $jobId, $page, $limit)
+{
+    $jobs = array();
+
+    if (!isset($limit)) $limit = 10;
+    if (!isset($page)) $page = 1;
+    $start_from = ($page - 1) * $limit;
+
+    $addQuery = "";
+    if (isset($jobId) && $jobId != "") {
+        $addQuery .= "AND JOBS.ID = '{$jobId}'";
+    }
+
+    $sql = "SELECT * FROM EMPLOYEES, APPLICATION, CUSTOMERS, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND CUSTOMERS.ID = APPLICATION.CUSTOMER_ID AND JOBS.ID = APPLICATION.JOB_ID AND EMPLOYEES.CUSTOMER_ID = $customerId {$addQuery} ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($jobs, $row);
+        }
+    }
+    return $jobs;
 }

@@ -10,8 +10,10 @@ if (!$isLogin) {
 }
 $limit = 10;
 $page = isset($_GET['p']) ? $_GET['p'] : 1;
-//$jobs = getManageJobs($connection, $customerId, $page, $limit);
+$jobId = isset($_GET['job']) ? $_GET['job'] : "";
+$jobs = getManageAppliedJobs($connection, $customerId, $jobId, $page, $limit);
 
+$jobList = getJobTitleList($connection, $customerId);
 ?>
 
 <!DOCTYPE html>
@@ -43,12 +45,11 @@ $page = isset($_GET['p']) ? $_GET['p'] : 1;
                         <div class="input-group-prepend">
                             <label class="input-group-text" for="job">Filter</label>
                         </div>
-                        <select class="custom-select" id="job" style="max-width: 200px;">
+                        <select class="custom-select" id="jobSelect" style="max-width: 200px;">
                             <option value="">-All jobs-</option>
-                            <option value="">Senior Designer</option>
-                            <option value="">Developer</option>
-                            <option value="">QA Tester</option>
-                            <option value="">Marketing Online</option>
+                            <?php for ($i = 0; $i < count($jobList); $i++) { ?>
+                                <option value="<?= $jobList[$i]['ID'] ?>"><?= $jobList[$i]['TITLE'] ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
@@ -60,43 +61,45 @@ $page = isset($_GET['p']) ? $_GET['p'] : 1;
                                 <th>Applied Job</th>
                                 <th>Applied Date</th>
                                 <th class="text-center">Resume</th>
-<!--                                <th class="text-center">Action</th>-->
+                                <!--                                <th class="text-center">Action</th>-->
                             </tr>
                             </thead>
                             <tbody>
-                            <?php for ($i = 0; $i < 10; $i++) { ?>
+                            <?php
+                            for ($i = 0; $i < count($jobs); $i++) {
+                                $job = $jobs[$i]; ?>
                                 <tr>
                                     <td>
-                                        <a href="./job-detail.php"><strong>Allan Im</strong></a>
+                                        <a href="./job-detail.php"><strong><?= $job['NAME'] ?></strong></a>
                                     </td>
                                     <td>
-                                        <a href="./job-detail.php"><strong>Developer</strong></a>
+                                        <a href="./job-detail.php"><strong><?= getJobType($job['TYPE']) ?></strong></a>
                                     </td>
                                     <td>
-                                        <i class="fas fa-map-marker-alt"></i>&nbsp;<em>Nov 11, 2018</em>
+                                        <i class="fas fa-map-marker-alt"></i>&nbsp;<em><?= date_format(date_create($job['APPLIED_DATE']), "Y-m-d") ?></em>
                                     </td>
                                     <td class="text-center">
                                         <a class="view_applications" href="#" data-toggle="tooltip" title="CV">
-                                            <i class="fas fa-file-download"> allan-resume.pdf</i>
+                                            <i class="fas fa-file-download"> <?= $job['RESUME'] ?></i>
                                         </a>
                                     </td>
-<!--                                    <td class="text-center">-->
-<!--                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip"-->
-<!--                                           title="Edit Job">-->
-<!--                                            <i class="fas fa-edit"></i>-->
-<!--                                        </a>-->
-<!--                                        <a href="./manage-jobs.php" class="member-manage-action action-delete"-->
-<!--                                           data-toggle="tooltip"-->
-<!--                                           title="Delete Job">-->
-<!--                                            <i class="fas fa-trash-alt"></i>-->
-<!--                                        </a>-->
-<!--                                    </td>-->
+                                    <!--                                    <td class="text-center">-->
+                                    <!--                                        <a href="./post-job.php" class="member-manage-action" data-toggle="tooltip"-->
+                                    <!--                                           title="Edit Job">-->
+                                    <!--                                            <i class="fas fa-edit"></i>-->
+                                    <!--                                        </a>-->
+                                    <!--                                        <a href="./manage-jobs.php" class="member-manage-action action-delete"-->
+                                    <!--                                           data-toggle="tooltip"-->
+                                    <!--                                           title="Delete Job">-->
+                                    <!--                                            <i class="fas fa-trash-alt"></i>-->
+                                    <!--                                        </a>-->
+                                    <!--                                    </td>-->
                                 </tr>
                             <?php } ?>
                             </tbody>
                         </table>
                         <div class="pagination">
-                            <a href="./manage-jobs.php" class="btn btn-default btn-block btn-loadmore">Load More</a>
+                            <!--                            <a href="./manage-jobs.php" class="btn btn-default btn-block btn-loadmore">Load More</a>-->
                         </div>
                     </div>
 
@@ -111,7 +114,12 @@ $page = isset($_GET['p']) ? $_GET['p'] : 1;
 
 </div>
 <!-- End PAGE -->
-
+<script>
+    $("#jobSelect").change(function (event) {
+        const jobId = $(this). children("option:selected"). val();
+        $(location).attr('href', './manage-application.php?job=' + jobId);
+    });
+</script>
 <?php include("_script.php"); ?>
 </body>
 </html>
