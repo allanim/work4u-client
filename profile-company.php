@@ -8,7 +8,8 @@ if (!$isLogin) {
 } else if ($customerType != 2) {
     header("Location: ./");
 }
-//$jobs = getManageJobs($connection, $customerId, $page, $limit);
+
+$employee = getEmployee($connection, $customerId);
 
 ?>
 
@@ -40,7 +41,8 @@ if (!$isLogin) {
                 <div class="col-md-12">
                     <div class="card mt-3 p-3 form-body">
 
-                        <form enctype="multipart/form-data">
+                        <form enctype="multipart/form-data" class="needs-validation" method="post" id="update-profile"
+                              action="profile-company-update.php">
                             <div class="job-form">
                                 <div class="job-form-company bottom-line">
                                     <h4>Company Profile</h4>
@@ -49,7 +51,8 @@ if (!$isLogin) {
                                             <label for="company_name" class="col-sm-3 control-label">Company
                                                 Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_name" value=""
+                                                <input type="text" class="form-control" id="company_name"
+                                                       value="<?= $employee['COMPANY_NAME'] ?>"
                                                        name="company_name" placeholder="Enter your company name">
                                             </div>
                                         </div>
@@ -57,7 +60,8 @@ if (!$isLogin) {
                                             <label for="company_website" class="col-sm-3 control-label">Company
                                                 Website</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_website" value=""
+                                                <input type="text" class="form-control" id="company_website"
+                                                       value="<?= $employee['COMPANY_WEBSITE'] ?>"
                                                        name="company_website" placeholder="Enter your company website">
                                             </div>
                                         </div>
@@ -67,7 +71,7 @@ if (!$isLogin) {
                                             <div class="col-sm-9">
                                                 <textarea class="form-control" id="company_desc" name="company_desc"
                                                           rows="8"
-                                                          placeholder="Enter your company description"></textarea>
+                                                          placeholder="Enter your company description"><?= $employee['COMPANY_DESC'] ?></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -81,7 +85,8 @@ if (!$isLogin) {
                                             <label for="company_googleplus"
                                                    class="col-sm-3 control-label">Google+</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_googleplus" value=""
+                                                <input type="text" class="form-control" id="company_googleplus"
+                                                       value="<?= $employee['COMPANY_GOOGLE_PLUS'] ?>"
                                                        name="company_googleplus" placeholder="http://">
                                             </div>
                                         </div>
@@ -89,7 +94,8 @@ if (!$isLogin) {
                                             <label for="company_facebook"
                                                    class="col-sm-3 control-label">Facebook</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_facebook" value=""
+                                                <input type="text" class="form-control" id="company_facebook"
+                                                       value="<?= $employee['COMPANY_FACEBOOK'] ?>"
                                                        name="company_facebook" placeholder="http://">
                                             </div>
                                         </div>
@@ -97,14 +103,16 @@ if (!$isLogin) {
                                             <label for="company_linkedin"
                                                    class="col-sm-3 control-label">LinkedIn</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_linkedin" value=""
+                                                <input type="text" class="form-control" id="company_linkedin"
+                                                       value="<?= $employee['COMPANY_LINKEDIN'] ?>"
                                                        name="company_linkedin" placeholder="http://">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label for="company_twitter" class="col-sm-3 control-label">Twitter</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_twitter" value=""
+                                                <input type="text" class="form-control" id="company_twitter"
+                                                       value="<?= $employee['COMPANY_TWITTER'] ?>"
                                                        name="company_twitter" placeholder="http://">
                                             </div>
                                         </div>
@@ -112,18 +120,24 @@ if (!$isLogin) {
                                             <label for="company_instagram"
                                                    class="col-sm-3 control-label">Instagram</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control" id="company_instagram" value=""
+                                                <input type="text" class="form-control" id="company_instagram"
+                                                       value="<?= $employee['COMPANY_INSTAGRAM'] ?>"
                                                        name="company_instagram" placeholder="http://">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-actions form-group text-center clearfix">
+                                        <div id="fail-message" class="alert alert-danger collapse" role="alert"></div>
                                         <button type="submit" class="btn btn-primary">Save profile</button>
                                     </div>
                                 </div>
+                            </div>
+                        </form>
 
-
+                        <form class="needs-validation" method="post" id="update-password"
+                              action="profile-password-update.php">
+                            <div class="job-form">
                                 <div class="job-form-company bottom-line">
                                     <h4>Change Password</h4>
                                     <div class="company-profile-form">
@@ -161,6 +175,7 @@ if (!$isLogin) {
                                     </div>
 
                                     <div class="form-actions form-group text-center clearfix">
+                                        <div id="fail-message2" class="alert alert-danger collapse" role="alert"></div>
                                         <button type="submit" class="btn btn-primary">Save new password</button>
                                     </div>
                                 </div>
@@ -179,7 +194,48 @@ if (!$isLogin) {
 
 </div>
 <!-- End PAGE -->
+<script>
+    $("#update-profile").submit(function (event) {
+        event.preventDefault();
+        const post_url = $(this).attr("action");
+        const form_data = $(this).serialize();
 
+        $.post(post_url, form_data, function (msg) {
+            $("#m-success #messageBody").html(msg);
+            $("#m-success").modal("show");
+        }).fail(function (error) {
+            console.log(error.responseText);
+            $("#fail-message").html(error.responseText).show();
+        });
+    });
+
+    $("#update-password").submit(function (event) {
+        event.preventDefault();
+        const post_url = $(this).attr("action");
+        const form_data = $(this).serialize();
+
+        if (!$("#currentPassword").val()) {
+            $("#fail-message2").html("Please input Current password").show();
+        } else if (!$("#newPassword").val()) {
+            $("#fail-message2").html("Please input New password").show();
+        } else if (!$("#cNewPassword").val()) {
+            $("#fail-message2").html("Please input Confirm new password").show();
+        } else if ($("#newPassword").val() !== $("#cNewPassword").val()) {
+            $("#fail-message2").html("Confirm new password is not equal to new password").show();
+        } else {
+            $.post(post_url, form_data, function (msg) {
+                $("#m-success #messageBody").html(msg);
+                $("#m-success").modal("show");
+                $("#currentPassword").val("");
+                $("#newPassword").val("");
+                $("#cNewPassword").val("");
+            }).fail(function (error) {
+                console.log(error.responseText);
+                $("#fail-message2").html(error.responseText).show();
+            });
+        }
+    });
+</script>
 <?php include("_script.php"); ?>
 </body>
 </html>

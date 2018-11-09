@@ -26,7 +26,28 @@ function getCustomer($connection, $id)
 {
     $sql = "SELECT * FROM CUSTOMERS WHERE ID = $id";
     return mysqli_fetch_assoc(mysqli_query($connection, $sql));
+}
 
+function updatePassword($connection, $id, $currentPassword, $newPassword)
+{
+    $sql = "UPDATE CUSTOMERS SET PASSWORD = '{$newPassword}' WHERE ID = $id AND PASSWORD = '$currentPassword'";
+    return mysqli_query($connection, $sql);
+}
+
+function updateEmployee($connection, $employee)
+{
+    $sql = "UPDATE EMPLOYEES  SET "
+        . "COMPANY_NAME = '{$employee['company_name']}', "
+        . "COMPANY_WEBSITE = '{$employee['company_website']}', "
+        . "COMPANY_DESC = '{$employee['company_desc']}', "
+        . "COMPANY_LOGO = '{$employee['company_logo']}', "
+        . "COMPANY_GOOGLE_PLUS = '{$employee['company_googleplus']}', "
+        . "COMPANY_FACEBOOK = '{$employee['company_facebook']}', "
+        . "COMPANY_LINKEDIN = '{$employee['company_linkedin']}', "
+        . "COMPANY_TWITTER = '{$employee['company_twitter']}', "
+        . "COMPANY_INSTAGRAM= '{$employee['company_instagram']}' "
+        . "WHERE ID = {$employee['employeeId']} ";
+    return mysqli_query($connection, $sql);
 }
 
 
