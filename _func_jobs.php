@@ -207,7 +207,51 @@ function getSavedJobs($connection, $customerId, $page, $limit)
 
 function isSavedJobs($connection, $customerId, $jobId)
 {
-    $sql = "SELECT * FROM SAVED_JOB WHERE CUSTOMER_ID = $customerId AND JOB_ID = $jobId";
+    $sql = "SELECT * FROM SAVED_JOB WHERE CUSTOMER_ID = {$customerId} AND JOB_ID = {$jobId}";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            return true;
+        }
+    }
+    return false;
+
+}
+
+
+function applyJob($connection, $customerId, $jobId, $employeeId)
+{
+    $now = date_create("now", timezone_open('America/Toronto'))->format('Y-m-d H:i:s');
+    $sql = "INSERT INTO APPLICATION (CUSTOMER_ID, JOB_ID, EMPLOYEE_ID, APPLIED_DATE, RESUME)"
+        . "VALUE ({$customerId}, {$jobId}, {$employeeId}, '{$now}', 'TEMP')";
+    return mysqli_query($connection, $sql);
+}
+
+function deleteAppliedJob($connection, $applicationId)
+{
+    $sql = "DELETE FROM APPLICATION WHERE ID = {$applicationId};";
+    return mysqli_query($connection, $sql);
+}
+
+function getAppliedJobs($connection, $customerId, $page, $limit)
+{
+    $jobs = array();
+
+    if (!isset($limit)) $limit = 10;
+    if (!isset($page)) $page = 1;
+    $start_from = ($page - 1) * $limit;
+
+    $sql = "SELECT * FROM EMPLOYEES, APPLICATION, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID AND JOBS.ID = APPLICATION.JOB_ID AND APPLICATION.CUSTOMER_ID = $customerId ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    if ($result = mysqli_query($connection, $sql)) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            array_push($jobs, $row);
+        }
+    }
+    return $jobs;
+}
+
+function isAppliedJobs($connection, $customerId, $jobId)
+{
+    $sql = "SELECT * FROM APPLICATION WHERE CUSTOMER_ID = {$customerId} AND JOB_ID = {$jobId}";
     if ($result = mysqli_query($connection, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
             return true;

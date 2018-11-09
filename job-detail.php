@@ -11,7 +11,8 @@ if (!$job) {
     header("Location: ./");
 }
 
-$isSavedJob = isSavedJobs($connection, $customerId, $job['id']);
+$isSavedJob = isSavedJobs($connection, $customerId, $job['ID']);
+$isAppliedJob = isAppliedJobs($connection, $customerId, $job['ID']);
 ?>
 
 <!DOCTYPE html>
@@ -54,18 +55,23 @@ $isSavedJob = isSavedJobs($connection, $customerId, $job['id']);
 
                             <?php if ($customerType == 1) { ?>
                                 <div class="job-action">
-                                    <a class="btn btn-primary" data-target="#applyJobModal" href="javascript:void(0);"
-                                       data-toggle="modal">
-                                        <i class="fas fa-sign-in-alt"></i>&nbsp;Apply for this job
-                                    </a>
+                                    <?php if ($isAppliedJob) { ?>
+                                        <button class="btn btn-secondary" data-toggle="tooltip"
+                                                data-original-title="Apply Job"><i class="far fa-heart"></i>&nbsp;Already Applied
+                                        </button>
+                                    <?php } else {?>
+                                        <button class="btn btn-primary" id="apply-job" data-toggle="tooltip"
+                                                data-original-title="Apply Job"><i class="far fa-heart"></i>&nbsp;Apply for this job
+                                        </button>
+                                    <?php } ?>
                                     <?php if ($isSavedJob) { ?>
-                                        <button class="btn btn-primary" id="save-job" data-toggle="tooltip"
-                                                data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Save
+                                        <button class="btn btn-secondary" data-toggle="tooltip"
+                                                data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Saved
                                             Job
                                         </button>
                                     <?php } else {?>
-                                        <button class="btn btn-secondary" data-toggle="tooltip"
-                                                data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Saved
+                                        <button class="btn btn-primary" id="save-job" data-toggle="tooltip"
+                                                data-original-title="Saved Job"><i class="far fa-heart"></i>&nbsp;Save
                                             Job
                                         </button>
                                     <?php } ?>
@@ -138,6 +144,22 @@ $isSavedJob = isSavedJobs($connection, $customerId, $job['id']);
         $.post(post_url, form_data, function (msg) {
             $("#m-success #messageBody").html(msg);
             $("#m-success").modal("show");
+            $(location).attr('href', './job-detail.php?id=<?=$job['ID']?>')
+        }).fail(function (error) {
+            console.log(error.responseText);
+            $("#m-fail #messageBody").html(error.responseText);
+            $("#m-fail").modal("show");
+        });
+    });
+
+    $("#apply-job").click(function (event) {
+        event.preventDefault();
+        const post_url = "apply-job-process.php";
+        const form_data = "jobId=<?=$job['ID']?>";
+        $.post(post_url, form_data, function (msg) {
+            $("#m-success #messageBody").html(msg);
+            $("#m-success").modal("show");
+            $(location).attr('href', './job-detail.php?id=<?=$job['ID']?>')
         }).fail(function (error) {
             console.log(error.responseText);
             $("#m-fail #messageBody").html(error.responseText);
