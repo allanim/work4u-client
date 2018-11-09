@@ -8,17 +8,17 @@
         </div>
         <div class="loop-item-content">
             <h2 class="loop-item-title">
-                <a href="#">Developer</a>
+                <a href="#"><?=$job['TITLE']?></a>
             </h2>
             <p class="content-meta">
-                <span class="job-company"><a href="#">RBC Amplify</a></span>
-                <span class="job-type"><a href="#"><i class="far fa-bookmark"></i>&nbsp;Student Job </a></span>
-                <span class="job-location"><i class="fas fa-map-marker-alt"></i>&nbsp;<a href="#"><em>Toronto, Ontario</em></a></span>
-                <span><time class="entry-date" datetime="2018-08-18T01:40:23+00:00"><i class="far fa-clock"></i>&nbsp;1 month ago</time></span>
+                <span class="job-company"><?=$job['COMPANY_NAME']?></span>
+                <span class="job-type"><i class="far fa-bookmark"></i>&nbsp;<?= getJobType($job['TYPE']) ?></span>
+                <span class="job-location"><i class="fas fa-map-marker-alt"></i>&nbsp;<em><?= $job['LOCATION'] ?></em></span>
+                <span><time class="entry-date" datetime="2018-08-18T01:40:23+00:00"><i class="far fa-clock"></i>&nbsp;<?= date_format(date_create($job['CLOSING']), "Y-m-d") ?></time></span>
             </p>
         </div>
         <div class="show-view-more">
-            <a class="btn btn-primary" href="./job-detail.php">View more </a>
+            <a class="btn btn-primary" href="./job-detail.php?id=<?=$job['ID']?>">View more </a>
         </div>
     </div>
 </article>

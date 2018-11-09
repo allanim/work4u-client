@@ -1,5 +1,11 @@
 <?php
 include("_session.php");
+include("_db-connect.php");
+include("_func_jobs.php");
+
+$limit = 10;
+$page = isset($_GET['p']) ? $_GET['p'] : 1;
+$jobs = getLatestJobs($connection, 3);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +33,8 @@ include("_session.php");
                             <h3>Latest Jobs</h3>
                         </div>
                         <div>
-                            <?php for ($i = 0; $i < 3; $i++) {
+                            <?php for ($i = 0; $i < count($jobs); $i++) {
+                                $job = $jobs[$i];
                                 include("_job_row.php");
                             } ?>
                         </div>

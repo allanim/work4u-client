@@ -24,7 +24,7 @@ function setCustomerInfo($customer)
 
 function getJob($connection, $id)
 {
-    $sql = "SELECT * FROM JOBS, EMPLOYEES WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID and JOBS.ID = $id";
+    $sql = "SELECT * FROM EMPLOYEES, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID and JOBS.ID = $id";
     return mysqli_fetch_assoc(mysqli_query($connection, $sql));
 }
 
@@ -36,7 +36,7 @@ function getJobs($connection, $page, $limit)
     if (!isset($page)) $page = 1;
     $start_from = ($page - 1) * $limit;
 
-    $sql = "SELECT * FROM JOBS, EMPLOYEES WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
+    $sql = "SELECT * FROM EMPLOYEES, JOBS WHERE JOBS.EMPLOYEE_ID = EMPLOYEES.ID ORDER BY JOBS.ID DESC LIMIT $start_from, $limit";
     if ($result = mysqli_query($connection, $sql)) {
         while ($row = mysqli_fetch_assoc($result)) {
             array_push($jobs, $row);
